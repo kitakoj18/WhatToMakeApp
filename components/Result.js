@@ -5,7 +5,6 @@ import Card from './Card';
 
 const Result = props => {
 
-    console.log(props.resultImg)
     return (
         <View style={styles.resultContainer}>
             <TouchableOpacity style={styles.touchableArea}>

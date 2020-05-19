@@ -86,7 +86,13 @@ const UserInputScreen = props => {
                             props.navigation.navigate({
                                 routeName: 'RecipeResults',
                                 params: {
-                                    enteredIngredients: enteredIngredients
+                                    enteredIngredients: enteredIngredients,
+                                    selectedVegetarian: selectedVegetarian,
+                                    selectedVegan: selectedVegan,
+                                    selectedGlutenFree: selectedGlutenFree,
+                                    selectedPescatarian: selectedPescatarian,
+                                    selectedPaleo: selectedPaleo,
+                                    selectedWhole30: selectedWhole30
                                 }
                             })
                         }}
