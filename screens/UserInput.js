@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard }
 
 import Card from '../components/Card';
 import AppButton from '../components/AppButton';
+import UserSelections from '../components/UserSelections';
 
 const UserInputScreen = props => {
 
@@ -31,18 +32,23 @@ const UserInputScreen = props => {
                         onChangeText={inputChangeHandler} />
                 </Card>
 
-                <AppButton 
-                    onPress={() =>{
-                        props.navigation.navigate({
-                            routeName: 'RecipeResults',
-                            params: {
-                                enteredIngredients: enteredIngredients
-                            }
-                        })
-                    }}
-                >
-                    Find recipes!
-                </AppButton>
+                <UserSelections />
+
+                <View style={styles.findButtonContainer}>
+                    <AppButton 
+                        style={styles.findButton}
+                        onPress={() =>{
+                            props.navigation.navigate({
+                                routeName: 'RecipeResults',
+                                params: {
+                                    enteredIngredients: enteredIngredients
+                                }
+                            })
+                        }}
+                    >
+                        Find recipes!
+                    </AppButton>
+                </View>
             </View>
         </TouchableWithoutFeedback>
     )
@@ -69,6 +75,13 @@ const styles = StyleSheet.create({
     },
     textInput: {
         textAlignVertical: 'top'
+    },
+    findButtonContainer: {
+        flex: 1,
+        justifyContent: 'flex-start'
+    },
+    findButton: {
+        marginVertical: 50
     }
 })
 
