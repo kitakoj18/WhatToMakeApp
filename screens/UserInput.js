@@ -9,8 +9,42 @@ const UserInputScreen = props => {
 
     const [enteredIngredients, setEnteredIngredients] = useState('');
 
+    const [selectedVegetarian, setSelectedVegetarian] = useState(false);
+    const [selectedVegan, setSelectedVegan] = useState(false);
+    const [selectedGlutenFree, setSelectedGlutenFree] = useState(false);
+    const [selectedPescatarian, setSelectedPescatarian] = useState(false);
+    const [selectedPaleo, setSelectedPaleo] = useState(false);
+    const [selectedWhole30, setSelectedWhole30] = useState(false);
+
     const inputChangeHandler = inputText => {
         setEnteredIngredients(inputText)
+    }
+
+    const toggleSelectionHandler = (selectionType) =>{
+        if(selectionType=='vegetarian'){
+            const toggledSelection = !selectedVegetarian
+            setSelectedVegetarian(toggledSelection)
+        }
+        if(selectionType=='vegan'){
+            const toggledSelection = !selectedVegan
+            setSelectedVegan(toggledSelection)
+        }
+        if(selectionType=='glutenFree'){
+            const toggledSelection = !selectedGlutenFree
+            setSelectedGlutenFree(toggledSelection)
+        }
+        if(selectionType=='pescatarian'){
+            const toggledSelection = !selectedPescatarian
+            setSelectedPescatarian(toggledSelection)
+        }
+        if(selectionType=='paleo'){
+            const toggledSelection = !selectedPaleo
+            setSelectedPaleo(toggledSelection)
+        }
+        if(selectionType=='whole30'){
+            const toggledSelection = !selectedWhole30
+            setSelectedWhole30(toggledSelection)
+        }
     }
 
     return (
@@ -20,7 +54,6 @@ const UserInputScreen = props => {
             <View style={styles.screen}>
                 <View style={styles.inputTextContainer}>
                     <Text>What do you have in your refridgerator? </Text>
-                    {/* <Text>Separate by commas e.g. chicken, tomatoes, ...</Text> */}
                 </View>
 
                 <Card style={styles.inputCard}>
@@ -32,7 +65,19 @@ const UserInputScreen = props => {
                         onChangeText={inputChangeHandler} />
                 </Card>
 
-                <UserSelections />
+                <View style={styles.userSelectionTextContainer}>
+                    <Text>Select any dietary preferences: </Text>
+                </View>
+
+                <UserSelections 
+                    onPress={toggleSelectionHandler}
+                    selectedVegetarian={selectedVegetarian}
+                    selectedVegan={selectedVegan}
+                    selectedGlutenFree={selectedGlutenFree}
+                    selectedPescatarian={selectedPescatarian}
+                    selectedPaleo={selectedPaleo}
+                    selectedWhole30={selectedWhole30}    
+                />
 
                 <View style={styles.findButtonContainer}>
                     <AppButton 
@@ -75,6 +120,9 @@ const styles = StyleSheet.create({
     },
     textInput: {
         textAlignVertical: 'top'
+    },
+    userSelectionTextContainer: {
+        marginTop: 15
     },
     findButtonContainer: {
         flex: 1,
