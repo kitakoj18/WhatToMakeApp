@@ -37,7 +37,8 @@ const ResultsList = props => {
 const styles = StyleSheet.create({
     list: {
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#F5F5DC'
     }
 })
 

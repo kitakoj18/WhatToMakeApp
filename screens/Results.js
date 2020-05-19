@@ -24,7 +24,7 @@ class ResultsScreen extends Component{
     }
 
     // componentDidMount(){
-    //     API_KEY = ''
+    //     API_KEY = 'a758813801f149d7a4a30328571d7965'
     //     const enteredIngredients = this.state.enteredIngredients
     //     const getRoute = 'https://api.spoonacular.com/recipes/findByIngredients?number=2&ingredients=' + enteredIngredients + '&apiKey=' + API_KEY
     //     axios.get(getRoute)
