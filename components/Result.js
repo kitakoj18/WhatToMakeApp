@@ -16,8 +16,8 @@ const Result = props => {
                 </View>
             </TouchableOpacity>
             <View style={styles.resultDetailContainer}>
-                <Text>Included number of ingredients you entered: {props.resultNumIncluded}</Text>
-                <Text>Included number of ingredients you did not enter: {props.resultNumNotIncluded}</Text>
+                <Text>Number of ingredients you have: {props.resultNumIncluded}</Text>
+                <Text>Number of ingredients you don't have: {props.resultNumNotIncluded}</Text>
             </View>
         </View>
     )
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         height: 350,
         width: '100%',
         marginTop: 10
-        // borderColor: 'black',
+        // backgroundColor: 'blue'
         // borderWidth: 1
     },
     touchableArea: {
@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
     },
     resultDetailContainer: {
         height: '15%',
+        marginHorizontal: 35,
         justifyContent: 'center',
         alignItems: 'center'
     }

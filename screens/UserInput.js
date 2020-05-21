@@ -20,32 +20,32 @@ const UserInputScreen = props => {
         setEnteredIngredients(inputText)
     }
 
-    const toggleSelectionHandler = (selectionType) =>{
-        if(selectionType=='vegetarian'){
-            const toggledSelection = !selectedVegetarian
-            setSelectedVegetarian(toggledSelection)
-        }
-        if(selectionType=='vegan'){
-            const toggledSelection = !selectedVegan
-            setSelectedVegan(toggledSelection)
-        }
-        if(selectionType=='glutenFree'){
-            const toggledSelection = !selectedGlutenFree
-            setSelectedGlutenFree(toggledSelection)
-        }
-        if(selectionType=='pescatarian'){
-            const toggledSelection = !selectedPescatarian
-            setSelectedPescatarian(toggledSelection)
-        }
-        if(selectionType=='paleo'){
-            const toggledSelection = !selectedPaleo
-            setSelectedPaleo(toggledSelection)
-        }
-        if(selectionType=='whole30'){
-            const toggledSelection = !selectedWhole30
-            setSelectedWhole30(toggledSelection)
-        }
-    }
+    // const toggleSelectionHandler = (selectionType) =>{
+    //     if(selectionType=='vegetarian'){
+    //         const toggledSelection = !selectedVegetarian
+    //         setSelectedVegetarian(toggledSelection)
+    //     }
+    //     if(selectionType=='vegan'){
+    //         const toggledSelection = !selectedVegan
+    //         setSelectedVegan(toggledSelection)
+    //     }
+    //     if(selectionType=='glutenFree'){
+    //         const toggledSelection = !selectedGlutenFree
+    //         setSelectedGlutenFree(toggledSelection)
+    //     }
+    //     if(selectionType=='pescatarian'){
+    //         const toggledSelection = !selectedPescatarian
+    //         setSelectedPescatarian(toggledSelection)
+    //     }
+    //     if(selectionType=='paleo'){
+    //         const toggledSelection = !selectedPaleo
+    //         setSelectedPaleo(toggledSelection)
+    //     }
+    //     if(selectionType=='whole30'){
+    //         const toggledSelection = !selectedWhole30
+    //         setSelectedWhole30(toggledSelection)
+    //     }
+    // }
 
     return (
         <TouchableWithoutFeedback onPress={()=>{
@@ -69,7 +69,7 @@ const UserInputScreen = props => {
                     <Text>Select any dietary preferences: </Text>
                 </View>
 
-                <UserSelections 
+                {/* <UserSelections 
                     onPress={toggleSelectionHandler}
                     selectedVegetarian={selectedVegetarian}
                     selectedVegan={selectedVegan}
@@ -77,7 +77,7 @@ const UserInputScreen = props => {
                     selectedPescatarian={selectedPescatarian}
                     selectedPaleo={selectedPaleo}
                     selectedWhole30={selectedWhole30}    
-                />
+                /> */}
 
                 <View style={styles.findButtonContainer}>
                     <AppButton 
@@ -87,12 +87,12 @@ const UserInputScreen = props => {
                                 routeName: 'RecipeResults',
                                 params: {
                                     enteredIngredients: enteredIngredients,
-                                    selectedVegetarian: selectedVegetarian,
-                                    selectedVegan: selectedVegan,
-                                    selectedGlutenFree: selectedGlutenFree,
-                                    selectedPescatarian: selectedPescatarian,
-                                    selectedPaleo: selectedPaleo,
-                                    selectedWhole30: selectedWhole30
+                                    // selectedVegetarian: selectedVegetarian,
+                                    // selectedVegan: selectedVegan,
+                                    // selectedGlutenFree: selectedGlutenFree,
+                                    // selectedPescatarian: selectedPescatarian,
+                                    // selectedPaleo: selectedPaleo,
+                                    // selectedWhole30: selectedWhole30
                                 }
                             })
                         }}
