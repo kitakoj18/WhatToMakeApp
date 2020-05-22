@@ -11,10 +11,11 @@ const SelectedRecipeModal = props =>{
 
     useEffect(() =>{
 
+        // console.log('made it to useEffect')
         const selectedRecipeId = navigation.getParam('selectedRecipeId')
         const getRoute = 'https://webknox-recipes.p.rapidapi.com/recipes/' + selectedRecipeId + '/information'
 
-        API_KEY = ''
+        const API_KEY = ''
         const config = {
             headers: {
                 "X-RapidAPI-Key": API_KEY
@@ -24,8 +25,9 @@ const SelectedRecipeModal = props =>{
         axios.get(getRoute, config)   
             .then(response =>{
                 const recipeDetails = response.data;
+                // console.log(recipeDetails.instructions)
                 setRecipeDetails(recipeDetails);
-                setIsLoading(true);
+                setIsLoading(false);
             }) 
 
     }, [navigation])

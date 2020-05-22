@@ -12,7 +12,7 @@ class ResultsScreen extends Component {
     constructor(props) {
         super(props)
 
-        const enteredIngredients = navigation.getParam('enteredIngredients')
+        this.enteredIngredients = this.props.navigation.getParam('enteredIngredients')
         // const selectedVegetarian = navigation.getParam('selectedVegetarian')
         // const selectedVegan = navigation.getParam('selectedVegan')
         // const selectedGlutenFree = navigation.getParam('selectedGlutenFree')
@@ -22,14 +22,14 @@ class ResultsScreen extends Component {
 
         this.state = {
             isLoading: true,
-            enteredIngredients: enteredIngredients,
+            //enteredIngredients: enteredIngredients,
             recipeResults: []
         };
 
     }
 
     componentDidMount() {
-        API_KEY = ''
+        const API_KEY = ''
 
         // const selectionList = []
         // if(selectedVegetarian){
@@ -59,7 +59,7 @@ class ResultsScreen extends Component {
         const config = {
             params: {
                 number: 1,
-                ingredients: this.state.enteredIngredients
+                ingredients: this.enteredIngredients
             },
             headers: {
                 "X-RapidAPI-Key": API_KEY
