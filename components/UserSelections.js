@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
+import { useSelector } from 'react-redux';
+
 import AppButton from './AppButton';
 
 const UserSelections = props => {
@@ -13,49 +15,51 @@ const UserSelections = props => {
         return style
     }
 
+    const {selectedVegetarian, selectedVegan, selectedGlutenFree, selectedDairyFree, selectedHealthy, selectedCheap} = useSelector(state => state.mealPrefs);
+
     return (
         <View style={styles.selectionsContainer}>
 
             <View style={styles.row}>
                 <AppButton
                     onPress={() => props.onPress('vegetarian')}
-                    style={toggleStyle(props.selectedVegetarian)}
-                    textStyle={!props.selectedVegetarian ? styles.unselectedButtonText : null}>
+                    style={toggleStyle(selectedVegetarian)}
+                    textStyle={!selectedVegetarian ? styles.unselectedButtonText : null}>
                     Vegetarian
                 </AppButton>
                 <AppButton
                     onPress={() => props.onPress('vegan')}
-                    style={toggleStyle(props.selectedVegan)}
-                    textStyle={!props.selectedVegan ? styles.unselectedButtonText : null}>
+                    style={toggleStyle(selectedVegan)}
+                    textStyle={!selectedVegan ? styles.unselectedButtonText : null}>
                     Vegan
                 </AppButton>
             </View>
             <View style={styles.row}>
                 <AppButton
                     onPress={() => props.onPress('glutenFree')}
-                    style={toggleStyle(props.selectedGlutenFree)}
-                    textStyle={!props.selectedGlutenFree ? styles.unselectedButtonText : null}>
+                    style={toggleStyle(selectedGlutenFree)}
+                    textStyle={!selectedGlutenFree ? styles.unselectedButtonText : null}>
                     Gluten-Free
                 </AppButton>
                 <AppButton
-                    onPress={() => props.onPress('pescatarian')}
-                    style={toggleStyle(props.selectedPescatarian)}
-                    textStyle={!props.selectedPescatarian ? styles.unselectedButtonText : null}>
-                    Pescatarian
+                    onPress={() => props.onPress('dairyFree')}
+                    style={toggleStyle(selectedDairyFree)}
+                    textStyle={!selectedDairyFree ? styles.unselectedButtonText : null}>
+                    Dairy-Free
                 </AppButton>
             </View>
             <View style={styles.row}>
                 <AppButton
-                    onPress={() => props.onPress('paleo')}
-                    style={toggleStyle(props.selectedPaleo)}
-                    textStyle={!props.selectedPaleo ? styles.unselectedButtonText : null}>
-                    Paleo
+                    onPress={() => props.onPress('healthy')}
+                    style={toggleStyle(selectedHealthy)}
+                    textStyle={!selectedHealthy ? styles.unselectedButtonText : null}>
+                    Healthy
                 </AppButton>
                 <AppButton
-                    onPress={() => props.onPress('whole30')}
-                    style={toggleStyle(props.selectedWhole30)}
-                    textStyle={!props.selectedWhole30 ? styles.unselectedButtonText : null}>
-                    Whole30
+                    onPress={() => props.onPress('cheap')}
+                    style={toggleStyle(selectedCheap)}
+                    textStyle={!selectedCheap ? styles.unselectedButtonText : null}>
+                    Cheap (less than $30)
                 </AppButton>
             </View>
 

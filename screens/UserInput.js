@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
+
+import { useDispatch } from 'react-redux';
+import { togglePrefs } from '../store/actions/mealPref';
 
 import Card from '../components/Card';
 import AppButton from '../components/AppButton';
@@ -12,40 +15,53 @@ const UserInputScreen = props => {
     const [selectedVegetarian, setSelectedVegetarian] = useState(false);
     const [selectedVegan, setSelectedVegan] = useState(false);
     const [selectedGlutenFree, setSelectedGlutenFree] = useState(false);
-    const [selectedPescatarian, setSelectedPescatarian] = useState(false);
-    const [selectedPaleo, setSelectedPaleo] = useState(false);
-    const [selectedWhole30, setSelectedWhole30] = useState(false);
+    const [selectedDairyFree, setSelectedDairyFree] = useState(false);
+    const [selectedHealthy, setSelectedHealthy] = useState(false);
+    const [selectedCheap, setSelectedCheap] = useState(false);
 
     const inputChangeHandler = inputText => {
         setEnteredIngredients(inputText)
     }
 
-    // const toggleSelectionHandler = (selectionType) =>{
-    //     if(selectionType=='vegetarian'){
-    //         const toggledSelection = !selectedVegetarian
-    //         setSelectedVegetarian(toggledSelection)
-    //     }
-    //     if(selectionType=='vegan'){
-    //         const toggledSelection = !selectedVegan
-    //         setSelectedVegan(toggledSelection)
-    //     }
-    //     if(selectionType=='glutenFree'){
-    //         const toggledSelection = !selectedGlutenFree
-    //         setSelectedGlutenFree(toggledSelection)
-    //     }
-    //     if(selectionType=='pescatarian'){
-    //         const toggledSelection = !selectedPescatarian
-    //         setSelectedPescatarian(toggledSelection)
-    //     }
-    //     if(selectionType=='paleo'){
-    //         const toggledSelection = !selectedPaleo
-    //         setSelectedPaleo(toggledSelection)
-    //     }
-    //     if(selectionType=='whole30'){
-    //         const toggledSelection = !selectedWhole30
-    //         setSelectedWhole30(toggledSelection)
-    //     }
-    // }
+    const toggleSelectionHandler = (selectionType) =>{
+        if(selectionType=='vegetarian'){
+            const toggledSelection = !selectedVegetarian
+            setSelectedVegetarian(toggledSelection)
+        }
+        if(selectionType=='vegan'){
+            const toggledSelection = !selectedVegan
+            setSelectedVegan(toggledSelection)
+        }
+        if(selectionType=='glutenFree'){
+            const toggledSelection = !selectedGlutenFree
+            setSelectedGlutenFree(toggledSelection)
+        }
+        if(selectionType=='dairyFree'){
+            const toggledSelection = !selectedDairyFree
+            setSelectedDairyFree(toggledSelection)
+        }
+        if(selectionType=='healthy'){
+            const toggledSelection = !selectedHealthy
+            setSelectedHealthy(toggledSelection)
+        }
+        if(selectionType=='cheap'){
+            const toggledSelection = !selectedCheap
+            setSelectedCheap(toggledSelection)
+        }
+    }
+
+    const dispatch = useDispatch();
+    const saveMealPrefs = useCallback(() =>{
+        const updatedMealPrefs = {
+            vegetarian: selectedVegetarian,
+            vegan: selectedVegan,
+            glutenFree: selectedGlutenFree,
+            dairyFree: selectedDairyFree,
+            healthy: selectedHealthy,
+            cheap: selectedCheap
+        }
+        dispatch(togglePrefs(updatedMealPrefs));
+    }, [selectedVegetarian, selectedVegan, selectedGlutenFree, selectedDairyFree, selectedHealthy, selectedCheap, dispatch])
 
     return (
         <TouchableWithoutFeedback onPress={()=>{
@@ -69,15 +85,9 @@ const UserInputScreen = props => {
                     <Text>Select any dietary preferences: </Text>
                 </View>
 
-                {/* <UserSelections 
+                <UserSelections 
                     onPress={toggleSelectionHandler}
-                    selectedVegetarian={selectedVegetarian}
-                    selectedVegan={selectedVegan}
-                    selectedGlutenFree={selectedGlutenFree}
-                    selectedPescatarian={selectedPescatarian}
-                    selectedPaleo={selectedPaleo}
-                    selectedWhole30={selectedWhole30}    
-                /> */}
+                />
 
                 <View style={styles.findButtonContainer}>
                     <AppButton 
