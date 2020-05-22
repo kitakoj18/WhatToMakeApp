@@ -7,10 +7,18 @@ import AppButton from './AppButton';
 
 const UserSelections = props => {
 
-    const toggleStyle = isSelected =>{
-        let style = styles.unselectedButton
+    const toggleButtonStyle = isSelected =>{
+        let style = styles.unselectedButton;
         if(isSelected){
             style=styles.selectedButton
+        }
+        return style
+    }
+
+    const toggleButtonText = isSelected =>{
+        let style = null;
+        if(!isSelected){
+            style = styles.unselectedButtonText
         }
         return style
     }
@@ -23,42 +31,42 @@ const UserSelections = props => {
             <View style={styles.row}>
                 <AppButton
                     onPress={() => props.onPress('vegetarian')}
-                    style={toggleStyle(selectedVegetarian)}
-                    textStyle={!selectedVegetarian ? styles.unselectedButtonText : null}>
+                    style={toggleButtonStyle(selectedVegetarian)}
+                    textStyle={toggleButtonText(selectedVegetarian)}>
                     Vegetarian
                 </AppButton>
                 <AppButton
                     onPress={() => props.onPress('vegan')}
-                    style={toggleStyle(selectedVegan)}
-                    textStyle={!selectedVegan ? styles.unselectedButtonText : null}>
+                    style={toggleButtonStyle(selectedVegan)}
+                    textStyle={toggleButtonText(selectedVegan)}>
                     Vegan
                 </AppButton>
             </View>
             <View style={styles.row}>
                 <AppButton
                     onPress={() => props.onPress('glutenFree')}
-                    style={toggleStyle(selectedGlutenFree)}
-                    textStyle={!selectedGlutenFree ? styles.unselectedButtonText : null}>
+                    style={toggleButtonStyle(selectedGlutenFree)}
+                    textStyle={toggleButtonText(selectedGlutenFree)}>
                     Gluten-Free
                 </AppButton>
                 <AppButton
                     onPress={() => props.onPress('dairyFree')}
-                    style={toggleStyle(selectedDairyFree)}
-                    textStyle={!selectedDairyFree ? styles.unselectedButtonText : null}>
+                    style={toggleButtonStyle(selectedDairyFree)}
+                    textStyle={toggleButtonText(selectedDairyFree)}>
                     Dairy-Free
                 </AppButton>
             </View>
             <View style={styles.row}>
                 <AppButton
                     onPress={() => props.onPress('healthy')}
-                    style={toggleStyle(selectedHealthy)}
-                    textStyle={!selectedHealthy ? styles.unselectedButtonText : null}>
+                    style={toggleButtonStyle(selectedHealthy)}
+                    textStyle={toggleButtonText(selectedHealthy)}>
                     Healthy
                 </AppButton>
                 <AppButton
                     onPress={() => props.onPress('cheap')}
-                    style={toggleStyle(selectedCheap)}
-                    textStyle={!selectedCheap ? styles.unselectedButtonText : null}>
+                    style={toggleButtonStyle(selectedCheap)}
+                    textStyle={toggleButtonText(selectedCheap)}>
                     Cheap (less than $30)
                 </AppButton>
             </View>
