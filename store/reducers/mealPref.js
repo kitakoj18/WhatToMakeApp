@@ -1,23 +1,25 @@
 import { TOGGLE_PREFERENCES } from '../actions/mealPref';
 
 const initialState = {
-    mealPrefs: {
-        vegetarian: false,
-        vegan: false,
-        glutenFree: false,
-        dairyFree: false,
-        healthy: false,
-        cheap: false
+    selectedPrefs: {
+        selectedVegetarian: false,
+        selectedVegan: false,
+        selectedGlutenFree: false,
+        selectedDairyFree: false,
+        selectedHealthy: false,
+        selectedCheap: false
     }
 }
 
 const mealPrefsReducer = (state=initialState, action) =>{
     switch(action.type) {
         case TOGGLE_PREFERENCES:
-            const updatedMealPrefs = action.updatedMealPrefs
-            return {mealPrefs: updatedMealPrefs}
+            const updatedSelectedPrefs = action.updatedSelectedPrefs
+            return {selectedPrefs: updatedSelectedPrefs}
         default:
             return state;
     }
 
 }
+
+export default mealPrefsReducer;

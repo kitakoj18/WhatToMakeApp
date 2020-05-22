@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 import { useDispatch } from 'react-redux';
@@ -51,16 +51,16 @@ const UserInputScreen = props => {
     }
 
     const dispatch = useDispatch();
-    const saveMealPrefs = useCallback(() =>{
-        const updatedMealPrefs = {
-            vegetarian: selectedVegetarian,
-            vegan: selectedVegan,
-            glutenFree: selectedGlutenFree,
-            dairyFree: selectedDairyFree,
-            healthy: selectedHealthy,
-            cheap: selectedCheap
+    useEffect(() =>{
+        const updatedSelectedPrefs = {
+            selectedVegetarian: selectedVegetarian,
+            selectedVegan: selectedVegan,
+            selectedGlutenFree: selectedGlutenFree,
+            selectedDairyFree: selectedDairyFree,
+            selectedHealthy: selectedHealthy,
+            selectedCheap: selectedCheap
         }
-        dispatch(togglePrefs(updatedMealPrefs));
+        dispatch(togglePrefs(updatedSelectedPrefs));
     }, [selectedVegetarian, selectedVegan, selectedGlutenFree, selectedDairyFree, selectedHealthy, selectedCheap, dispatch])
 
     return (

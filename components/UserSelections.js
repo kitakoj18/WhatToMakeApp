@@ -23,7 +23,12 @@ const UserSelections = props => {
         return style
     }
 
-    const {selectedVegetarian, selectedVegan, selectedGlutenFree, selectedDairyFree, selectedHealthy, selectedCheap} = useSelector(state => state.mealPrefs);
+    const {selectedVegetarian, 
+        selectedVegan, 
+        selectedGlutenFree, 
+        selectedDairyFree, 
+        selectedHealthy, 
+        selectedCheap} = useSelector(state => state.mealPrefs.selectedPrefs);
 
     return (
         <View style={styles.selectionsContainer}>
@@ -67,7 +72,7 @@ const UserSelections = props => {
                     onPress={() => props.onPress('cheap')}
                     style={toggleButtonStyle(selectedCheap)}
                     textStyle={toggleButtonText(selectedCheap)}>
-                    Cheap (less than $30)
+                    Cheap (~$30)
                 </AppButton>
             </View>
 
@@ -93,7 +98,7 @@ const styles = StyleSheet.create({
     unselectedButton: {
         flexDirection: 'row',
         justifyContent: 'center',
-        width: 115,
+        width: 125,
         marginHorizontal: 20,
         borderRadius: 0,
         borderColor: '#800000',
@@ -106,7 +111,7 @@ const styles = StyleSheet.create({
     selectedButton: {
         flexDirection: 'row',
         justifyContent: 'center',
-        width: 115,
+        width: 125,
         marginHorizontal: 20,
         borderRadius: 0
     }
