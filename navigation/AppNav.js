@@ -6,6 +6,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import StartScreen from '../screens/Start';
 import UserInputScreen from '../screens/UserInput';
 import ResultsScreen from '../screens/Results';
+import SelectedRecipeModal from '../screens/SelectedRecipe';
 
 const defaultStackNavOptions = {
     headerTitle: 'WhatToMake?',
@@ -29,4 +30,16 @@ const AppNavigator = createStackNavigator({
     defaultNavigationOptions: defaultStackNavOptions
 })
 
-export default createAppContainer(AppNavigator);
+const RootStack = createStackNavigator({
+    Main: {
+        screen: AppNavigator
+    },
+    SelectedRecipeModal: {
+        screen: SelectedRecipeModal
+    }
+}, {
+    mode: 'modal',
+    headerMode: 'none'
+})
+
+export default createAppContainer(RootStack);

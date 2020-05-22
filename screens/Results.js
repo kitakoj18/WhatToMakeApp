@@ -12,7 +12,6 @@ class ResultsScreen extends Component {
     constructor(props) {
         super(props)
 
-        const { navigation } = this.props
         const enteredIngredients = navigation.getParam('enteredIngredients')
         // const selectedVegetarian = navigation.getParam('selectedVegetarian')
         // const selectedVegan = navigation.getParam('selectedVegan')
@@ -31,7 +30,6 @@ class ResultsScreen extends Component {
 
     componentDidMount() {
         API_KEY = ''
-        const enteredIngredients = this.state.enteredIngredients
 
         // const selectionList = []
         // if(selectedVegetarian){
@@ -64,7 +62,7 @@ class ResultsScreen extends Component {
                 ingredients: this.state.enteredIngredients
             },
             headers: {
-                "X-RapidAPI-Key": ""
+                "X-RapidAPI-Key": API_KEY
             }
         }
 
@@ -78,8 +76,13 @@ class ResultsScreen extends Component {
     }
 
     onSelectRecipeHandler = (id) =>{
-        const selectedRecipeId = id
         // add modal navigation and pass in selectedRecipeId to page
+        this.props.navigation.navigate({
+            routeName: 'SelectedRecipeModal',
+            params: {
+                selectedRecipeId: id
+            }
+        })
     }
 
     render() {
