@@ -64,7 +64,7 @@ class ResultsScreen extends Component {
                 ingredients: this.state.enteredIngredients
             },
             headers: {
-                "X-RapidAPI-Key": "6146aef00bmsh7b20b72247d654ap1bbe5cjsne1fee7d8bcaa"
+                "X-RapidAPI-Key": ""
             }
         }
 
@@ -75,6 +75,11 @@ class ResultsScreen extends Component {
                 this.setState({ recipeResults: recipeResults })
                 this.setState({ isLoading: false })
             })
+    }
+
+    onSelectRecipeHandler = (id) =>{
+        const selectedRecipeId = id
+        // add modal navigation and pass in selectedRecipeId to page
     }
 
     render() {
@@ -92,6 +97,7 @@ class ResultsScreen extends Component {
             <View style={styles.screen}>
                 <ResultsList
                     recipeResults={this.state.recipeResults}
+                    onClick={this.onSelectRecipeHandler}
                 />
             </View>
         )

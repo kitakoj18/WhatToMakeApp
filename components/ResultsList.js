@@ -6,17 +6,20 @@ import Result from './Result';
 const ResultsList = props => {
 
     const renderResults = (result) => {
+        const resultId = result.item.id;
         const resultTitle = result.item.title;
         const resultImg = result.item.image;
-        const resultNumIncluded = result.item.usedIngredientCount
-        const resultNumNotIncluded = result.item.missedIngredientCount
+        const resultNumIncluded = result.item.usedIngredientCount;
+        const resultNumNotIncluded = result.item.missedIngredientCount;
         
         return (
             <Result 
+                resultId = {resultId}
                 resultTitle={resultTitle}
                 resultImg={resultImg}
                 resultNumIncluded={resultNumIncluded}
                 resultNumNotIncluded={resultNumNotIncluded}
+                onClick={props.onClick}
             />
         )
     }

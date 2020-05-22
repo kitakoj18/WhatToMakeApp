@@ -7,7 +7,12 @@ const Result = props => {
 
     return (
         <View style={styles.resultContainer}>
-            <TouchableOpacity style={styles.touchableArea}>
+            <TouchableOpacity 
+                style={styles.touchableArea}
+                onPress={() => {
+                    props.onClick(props.resultId)}
+                }
+            >
                 <View style={styles.resultTitle}>
                     <Text>{props.resultTitle}</Text>
                 </View>
