@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 
+import { connect } from 'react-redux';
+
 import axios from 'axios';
 
 import ResultsList from '../components/ResultsList';
-
-import { RECIPES } from '../data/dummy-data';
 
 class ResultsScreen extends Component {
 
@@ -13,53 +13,36 @@ class ResultsScreen extends Component {
         super(props)
 
         this.enteredIngredients = this.props.navigation.getParam('enteredIngredients')
-        // const selectedVegetarian = navigation.getParam('selectedVegetarian')
-        // const selectedVegan = navigation.getParam('selectedVegan')
-        // const selectedGlutenFree = navigation.getParam('selectedGlutenFree')
-        // const selectedPescatarian = navigation.getParam('selectedPescatarian')
-        // const selectedPaleo = navigation.getParam('selectedPaleo')
-        // const selectedWhole30 = navigation.getParam('selectedWhole30')
 
         this.state = {
             isLoading: true,
             //enteredIngredients: enteredIngredients,
             recipeResults: []
         };
-
     }
 
     componentDidMount() {
         const API_KEY = ''
 
-        // const selectionList = []
-        // if(selectedVegetarian){
-        //     selectionList.push('vegetarian')
-        // }
-        // if(selectedVegan){
-        //     selectionList.push('vegan')
-        // }
-        // if(selectedGlutenFree){
-        //     selectionList.push('glutenfree')
-        // }
-        // if(selectedPescatarian){
-        //     selectionList.push('pescatarian')
-        // }
-        // if(selectedPaleo){
-        //     selectionList.push('paleo')
-        // }
-        // if(selectedWhole30){
-        //     selectionList.push('whole30')
-        // }
-
-        // const selections = selectionList.join(',')
-        // const selectionRoute = '&diet=' + selections
+        const {selectedVegetarian, 
+            selectedVegan, 
+            selectedGlutenFree, 
+            selectedDairyFree, 
+            selectedHealthy, 
+            selectedCheap} = this.props.selectedPrefs; 
 
         const getRoute = 'https://webknox-recipes.p.rapidapi.com/recipes/findByIngredients'
 
         const config = {
             params: {
                 number: 1,
-                ingredients: this.enteredIngredients
+                ingredients: this.enteredIngredients,
+                vegetarian: selectedVegetarian ? 'true' : 'false',
+                vegan: selectedVegan ? 'true' : 'false',
+                glutenFree: selectedGlutenFree ? 'true' : 'false',
+                dairyFree: selectedDairyFree ? 'true' : 'false',
+                veryHealthy: selectedHealthy ? 'true' : 'false',
+                cheap: selectedCheap ? 'true' : 'false' 
             },
             headers: {
                 "X-RapidAPI-Key": API_KEY
@@ -115,4 +98,11 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ResultsScreen;
+const mapStateToProps = state => {
+    return {
+        // define prop names
+        selectedPrefs: state.mealPrefs.selectedPrefs
+    };
+}
+
+export default connect(mapStateToProps)(ResultsScreen);
