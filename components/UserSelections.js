@@ -28,7 +28,8 @@ const UserSelections = props => {
         selectedGlutenFree, 
         selectedDairyFree, 
         selectedHealthy, 
-        selectedCheap} = useSelector(state => state.mealPrefs.selectedPrefs);
+        selectedCheap} = useSelector(state => state.mealPrefs.selectedPrefs); 
+        // mealPrefs is the reducer in App.js managing the state and selectedPrefs is a property defined in the state object
 
     return (
         <View style={styles.selectionsContainer}>
