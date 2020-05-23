@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
 
 import { connect } from 'react-redux';
 
@@ -71,10 +71,8 @@ class ResultsScreen extends Component {
     render() {
         if (this.state.isLoading) {
             return (
-                <View>
-                    <Text>
-                        ...Loading...
-                    </Text>
+                <View style={styles.loadingContainer}>
+                    <ActivityIndicator size="large" color="#800000"/>
                 </View>
             )
         }
@@ -95,6 +93,11 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         backgroundColor: '#F5F5DC'
+    },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 })
 

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 
-const SelectedRecipeModal = props =>{
+const SelectedRecipeModal = props => {
 
     const { navigation } = props;
 
     const [isLoading, setIsLoading] = useState(true);
     const [recipeDetails, setRecipeDetails] = useState({});
 
-    useEffect(() =>{
+    useEffect(() => {
 
         // console.log('made it to useEffect')
         const selectedRecipeId = navigation.getParam('selectedRecipeId')
@@ -21,21 +21,21 @@ const SelectedRecipeModal = props =>{
                 "X-RapidAPI-Key": API_KEY
             }
         }
-    
-        axios.get(getRoute, config)   
-            .then(response =>{
+
+        axios.get(getRoute, config)
+            .then(response => {
                 const recipeDetails = response.data;
                 // console.log(recipeDetails.instructions)
                 setRecipeDetails(recipeDetails);
                 setIsLoading(false);
-            }) 
+            })
 
     }, [navigation])
 
-    if(isLoading){
+    if (isLoading) {
         return (
-            <View>
-                <Text>...Loading...</Text>
+            <View style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color="#800000" />
             </View>
         )
     }
@@ -48,7 +48,11 @@ const SelectedRecipeModal = props =>{
 };
 
 const styles = StyleSheet.create({
-
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+    }
 });
 
 export default SelectedRecipeModal;
