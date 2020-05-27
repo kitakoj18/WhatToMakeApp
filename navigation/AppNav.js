@@ -30,12 +30,20 @@ const AppNavigator = createStackNavigator({
     defaultNavigationOptions: defaultStackNavOptions
 })
 
+const SelectedModalNavigator = createStackNavigator({
+    SelectedRecipeModal: {
+        screen: SelectedRecipeModal
+    }
+}, {
+    defaultNavigationOptions: defaultStackNavOptions
+})
+
 const RootStack = createStackNavigator({
     Main: {
         screen: AppNavigator
     },
     SelectedRecipeModal: {
-        screen: SelectedRecipeModal
+        screen: SelectedModalNavigator
     }
 }, {
     mode: 'modal',
