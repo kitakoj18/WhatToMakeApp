@@ -39,6 +39,12 @@ const SelectedRecipeModal = props => {
 
     }, [navigation])
 
+    useEffect(() =>{
+        if(recipeDetails){
+            props.navigation.setParams({headerTitle: recipeDetails.title})
+        }
+    }, [recipeDetails])
+
     if (isLoading) {
         return (
             <View style={styles.loadingContainer}>
@@ -94,8 +100,10 @@ const SelectedRecipeModal = props => {
 };
 
 SelectedRecipeModal.navigationOptions = ({ navigation }) =>{
+
+    headerTitle = navigation.getParam('headerTitle')
     return {
-        headerTitle: 'testing!',
+        headerTitle: headerTitle ? headerTitle: '...Loading...',
         headerLeft: () =>(null),
         headerRight: () =>(
             <HeaderButtons HeaderButtonComponent={ExitButton}>
