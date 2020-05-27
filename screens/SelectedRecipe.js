@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, Image } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, Image, FlatList } from 'react-native';
 import axios from 'axios';
+
+import IngredientsList from '../components/IngredientsList';
+import InstructionsList from '../components/InstructionsList';
+
+import { DETAILS } from '../data/resultDetails';
 
 const SelectedRecipeModal = props => {
 
@@ -41,34 +46,46 @@ const SelectedRecipeModal = props => {
     }
 
     let recipeTitle;
-    let ingredientDetails;
     let recipeLength;
+    let ingredientDetails;
     let imgUrl;
-    let recipeInstructions;
+    let recipeSteps;
 
     if (!isLoading && recipeDetails) {
         recipeTitle = recipeDetails.title;
-        console.log(recipeTitle)
+        recipeLength = recipeDetails.readyInMinutes;
         // list of extended ingredients
         ingredientDetails = recipeDetails.extendedIngredients;
-        recipeLength = recipeDetails.readyInMinutes;
         imgUrl = recipeDetails.image;
-        recipeInstructions = recipeDetails.instructions;
+        recipeSteps = recipeDetails.analyzedInstructions[0].steps;
     }
 
     return (
         <View style={styles.detailsContainer}>
-            <View style={styles.titleContainer}>
+            <View style={styles.headerContainer}>
                 <Text>{recipeTitle}</Text>
-            </View>
-            <View style={styles.imgContainer}>
-                <Image source={{ uri: imgUrl }} style={styles.img} />
-            </View>
-            <View style={styles.servingTimeContainer}>
                 <Text>Serving Time: {recipeLength} minutes</Text>
+                <View style={styles.imgContainer}>
+                    <Image source={{ uri: imgUrl }} style={styles.img} />
+                </View>
             </View>
+
+            <View style={styles.ingredientsContainer}>
+                <View style={styles.ingredientsTextContainer}>
+                    <Text>Ingredients: </Text>
+                </View>
+                <IngredientsList
+                    ingredients={ingredientDetails}
+                />
+            </View>
+
             <View style={styles.instructionsContainer}>
-                <Text>{recipeInstructions}</Text>
+                <View style={styles.instructionsTextContainer}>
+                    <Text>Instructions: </Text>
+                </View>
+                <InstructionsList
+                    recipeSteps={recipeSteps}
+                />
             </View>
         </View>
     )
@@ -82,18 +99,22 @@ const styles = StyleSheet.create({
     },
     detailsContainer: {
         flex: 1,
-        height: 400,
         width: '100%',
-        justifyContent: 'center',
+        // justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 10
+        paddingHorizontal: 20,
+        paddingTop: 10,
+        paddingBottom: 20
     },
-    titleContainer: {
-        height: '10%',
+    headerContainer: {
+        // flex: 1,
+        height: '45%',
+        width: '100%',
         alignItems: 'center'
     },
     imgContainer: {
-        height: '50%',
+        height: '85%',
+        width: '100%',
         borderRadius: 10,
         overflow: 'hidden',
         borderColor: 'black',
@@ -103,12 +124,27 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%'
     },
-    servingTimeContainer: {
+    ingredientsTextContainer: {
+        width: '100%',
+        marginBottom: 5,
+        paddingLeft: 10
+    },
+    ingredientsContainer: {
         height: '10%',
-        alignItems: 'center'
+        width: '100%',
+        justifyContent: 'center'
+    },
+    instructionsTextContainer: {
+        width: '100%',
+        marginBottom: 5,
+        paddingLeft: 10
     },
     instructionsContainer: {
-        height: '30%'
+        // flex: 1,
+        height: '45%',
+        width: '100%',
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
 
