@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, Image, FlatList } from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import axios from 'axios';
 
 import IngredientsList from '../components/IngredientsList';
 import InstructionsList from '../components/InstructionsList';
+import ExitButton from '../components/ExitButton';
 
-import { DETAILS } from '../data/resultDetails';
+import { Header } from 'react-native/Libraries/NewAppScreen';
 
 const SelectedRecipeModal = props => {
 
@@ -91,6 +93,24 @@ const SelectedRecipeModal = props => {
     )
 };
 
+SelectedRecipeModal.navigationOptions = ({ navigation }) =>{
+    return {
+        headerTitle: 'testing!',
+        headerLeft: () =>(null),
+        headerRight: () =>(
+            <HeaderButtons HeaderButtonComponent={ExitButton}>
+                <Item 
+                    title='Close'
+                    iconName={'close'}
+                    onPress={() =>{
+                        navigation.goBack();
+                    }}
+                />
+            </HeaderButtons>
+        )
+    }
+}
+
 const styles = StyleSheet.create({
     loadingContainer: {
         flex: 1,
@@ -99,6 +119,7 @@ const styles = StyleSheet.create({
     },
     detailsContainer: {
         flex: 1,
+        backgroundColor: '#F5F5DC',
         width: '100%',
         // justifyContent: 'center',
         alignItems: 'center',
