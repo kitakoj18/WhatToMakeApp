@@ -18,7 +18,7 @@ const SelectedRecipeModal = props => {
 
     useEffect(() => {
 
-        // console.log('made it to useEffect')
+        // console.log('looking up selected recipe details')
         const selectedRecipeId = navigation.getParam('selectedRecipeId')
         const getRoute = 'https://webknox-recipes.p.rapidapi.com/recipes/' + selectedRecipeId + '/information'
 
@@ -38,12 +38,6 @@ const SelectedRecipeModal = props => {
             })
 
     }, [navigation])
-
-    useEffect(() =>{
-        if(recipeDetails){
-            props.navigation.setParams({headerTitle: recipeDetails.title})
-        }
-    }, [recipeDetails])
 
     if (isLoading) {
         return (
@@ -101,9 +95,9 @@ const SelectedRecipeModal = props => {
 
 SelectedRecipeModal.navigationOptions = ({ navigation }) =>{
 
-    headerTitle = navigation.getParam('headerTitle')
+    headerTitle = navigation.getParam('selectedRecipeTitle')
     return {
-        headerTitle: headerTitle ? headerTitle: '...Loading...',
+        headerTitle: headerTitle,
         headerLeft: () =>(null),
         headerRight: () =>(
             <HeaderButtons HeaderButtonComponent={ExitButton}>

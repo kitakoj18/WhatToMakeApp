@@ -22,6 +22,7 @@ class ResultsScreen extends Component {
     }
 
     componentDidMount() {
+        
         const API_KEY = ''
 
         const {selectedVegetarian, 
@@ -58,12 +59,13 @@ class ResultsScreen extends Component {
             })
     }
 
-    onSelectRecipeHandler = (id) =>{
+    onSelectRecipeHandler = (id, title) =>{
         // add modal navigation and pass in selectedRecipeId to page
         this.props.navigation.navigate({
             routeName: 'SelectedRecipeModal',
             params: {
-                selectedRecipeId: id
+                selectedRecipeId: id,
+                selectedRecipeTitle: title
             }
         })
     }
@@ -77,14 +79,14 @@ class ResultsScreen extends Component {
             )
         }
 
-        if (!this.state.isLoading && recipeResults.length==0){
-            return (
-                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                    <Text>No Results</Text>
-                    <Text>Try search again!</Text>
-                </View>
-            )
-        }
+        // if (!this.state.isLoading && recipeResults.length==0){
+        //     return (
+        //         <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        //             <Text>No Results</Text>
+        //             <Text>Try search again!</Text>
+        //         </View>
+        //     )
+        // }
 
         return (
             <View style={styles.screen}>

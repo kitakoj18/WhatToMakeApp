@@ -10,7 +10,7 @@ const Result = props => {
             <TouchableOpacity 
                 style={styles.touchableArea}
                 onPress={() => {
-                    props.onClick(props.resultId)}
+                    props.onClick(props.resultId, props.resultTitle)}
                 }
             >
                 <View style={styles.resultTitle}>
