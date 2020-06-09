@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, FlatList, ActivityIndicator, ImageBackground } from 'react-native';
 
 import { connect } from 'react-redux';
 
@@ -36,7 +36,7 @@ class ResultsScreen extends Component {
 
         const config = {
             params: {
-                number: 1,
+                number: 5,
                 ingredients: this.enteredIngredients,
                 vegetarian: selectedVegetarian ? 'true' : 'false',
                 vegan: selectedVegan ? 'true' : 'false',
@@ -60,6 +60,7 @@ class ResultsScreen extends Component {
     }
 
     onSelectRecipeHandler = (id, title) =>{
+        console.log(id)
         // add modal navigation and pass in selectedRecipeId to page
         this.props.navigation.navigate({
             routeName: 'SelectedRecipeModal',
@@ -73,9 +74,11 @@ class ResultsScreen extends Component {
     render() {
         if (this.state.isLoading) {
             return (
+                
                 <View style={styles.loadingContainer}>
                     <ActivityIndicator size="large" color="#800000"/>
                 </View>
+                
             )
         }
 
@@ -89,21 +92,32 @@ class ResultsScreen extends Component {
         // }
 
         return (
-            <View style={styles.screen}>
-                <ResultsList
-                    recipeResults={this.state.recipeResults}
-                    onClick={this.onSelectRecipeHandler}
-                />
-            </View>
+            <ImageBackground 
+                source={require('../assets/verticalwallpaper.jpg')}
+                style={styles.backgroundImg}
+            >
+                <View style={styles.screen}>
+                    <ResultsList
+                        recipeResults={this.state.recipeResults}
+                        onClick={this.onSelectRecipeHandler}
+                    />
+                </View>
+            </ImageBackground>
         )
     };
 
 };
 
 const styles = StyleSheet.create({
-    screen: {
+    backgroundImg: {
         flex: 1,
-        backgroundColor: '#F5F5DC'
+        alignItems: 'center'
+    },
+    screen: {
+        // flex: 1,
+        width: '90%',
+        // backgroundColor: '#F5F5DC',
+        // padding:10
     },
     loadingContainer: {
         flex: 1,

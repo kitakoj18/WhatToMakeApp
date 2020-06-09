@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableWithoutFeedback, ImageBackground, Keyboard } from 'react-native';
 
 import { useDispatch } from 'react-redux';
 import { togglePrefs } from '../store/actions/mealPref';
@@ -67,7 +67,11 @@ const UserInputScreen = props => {
         <TouchableWithoutFeedback onPress={()=>{
             Keyboard.dismiss();
         }}>
-            <View style={styles.screen}>
+            <ImageBackground
+            source={require('../assets/verticalwallpaper.jpg')}
+            style={styles.screen}
+            imageStyle={{resizeMode: 'cover'}}
+            >
                 <View style={styles.inputTextContainer}>
                     <Text>What do you have in your refridgerator? </Text>
                 </View>
@@ -78,7 +82,8 @@ const UserInputScreen = props => {
                         value={enteredIngredients}
                         multiline={true}
                         placeholder='Separate by commas e.g. chicken, tomatoes, ...'
-                        onChangeText={inputChangeHandler} />
+                        onChangeText={inputChangeHandler} 
+                    />
                 </Card>
 
                 <View style={styles.userSelectionTextContainer}>
@@ -107,10 +112,10 @@ const UserInputScreen = props => {
                             })
                         }}
                     >
-                        Find recipes!
+                        SEARCH RECIPES
                     </AppButton>
                 </View>
-            </View>
+            </ImageBackground>
         </TouchableWithoutFeedback>
     )
 }
@@ -128,24 +133,41 @@ const styles = StyleSheet.create({
     inputCard: {
         marginVertical: 10,
         width: '85%',
-        height: '25%'
+        height: '25%',
+        padding: 0,
+        borderRadius: 25,
+        overflow: 'hidden'
     },
     inputTextContainer: {
-        marginTop: 15,
-        alignItems: 'center'
+        height: 25,
+        width: '85%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 25,
+        backgroundColor: '#F5F5DC',
+        borderRadius: 10
     },
     textInput: {
-        textAlignVertical: 'top'
+        flex: 1,
+        textAlignVertical: 'top',
+        backgroundColor: '#F5F5DC',
+        padding: 15
     },
     userSelectionTextContainer: {
-        marginTop: 15
+        height: 25,
+        width: '65%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 30,
+        backgroundColor: '#F5F5DC',
+        borderRadius: 10
     },
     findButtonContainer: {
         flex: 1,
-        justifyContent: 'flex-start'
+        // justifyContent: 'center'
     },
     findButton: {
-        marginVertical: 50
+        marginVertical: 25
     }
 })
 

@@ -15,7 +15,7 @@ const IngredientsList = props =>{
     
     return (
         <FlatList 
-            keyExtractor={ingredient => ingredient.id.toString()}
+            keyExtractor={ingredient => ingredient.name}
             data={props.ingredients}
             renderItem={renderIngredients}
             horizontal={true}

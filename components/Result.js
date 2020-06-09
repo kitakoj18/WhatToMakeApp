@@ -14,7 +14,7 @@ const Result = props => {
                 }
             >
                 <View style={styles.resultTitle}>
-                    <Text>{props.resultTitle}</Text>
+                    <Text style={styles.resultTitleText}>{props.resultTitle}</Text>
                 </View>
                 <View style={styles.resultImgContainer}>
                     <Image source={{ uri: props.resultImg }} style={styles.img} />
@@ -32,9 +32,10 @@ const styles = StyleSheet.create({
     resultContainer: {
         height: 350,
         width: '100%',
-        marginTop: 10
-        // backgroundColor: 'blue'
-        // borderWidth: 1
+        paddingHorizontal: 5,
+        backgroundColor: '#F5F5DC',
+        marginTop: 10,
+        borderRadius: 10,
     },
     touchableArea: {
         height: '85%'
@@ -42,8 +43,12 @@ const styles = StyleSheet.create({
     resultTitle: {
         height: '12%',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginHorizontal: 35
     },
+    resultTitleText: {
+        textAlign: 'center'
+    },  
     resultImgContainer: {
         height: '88%',
         borderRadius: 10,
@@ -57,7 +62,6 @@ const styles = StyleSheet.create({
     },
     resultDetailContainer: {
         height: '15%',
-        marginHorizontal: 35,
         justifyContent: 'center',
         alignItems: 'center'
     }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, Image, FlatList } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, Image, ImageBackground } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import axios from 'axios';
 
@@ -18,7 +18,7 @@ const SelectedRecipeModal = props => {
 
     useEffect(() => {
 
-        // console.log('looking up selected recipe details')
+        console.log('looking up selected recipe details')
         const selectedRecipeId = navigation.getParam('selectedRecipeId')
         const getRoute = 'https://webknox-recipes.p.rapidapi.com/recipes/' + selectedRecipeId + '/information'
 
@@ -37,7 +37,7 @@ const SelectedRecipeModal = props => {
                 setIsLoading(false);
             })
 
-    }, [navigation])
+    }, [])
 
     if (isLoading) {
         return (
@@ -63,10 +63,13 @@ const SelectedRecipeModal = props => {
     }
 
     return (
-        <View style={styles.detailsContainer}>
+        <ImageBackground 
+            source={require('../assets/verticalwallpaper.jpg')}
+            style={styles.backgroundImg}
+        >
+            {/* <View style={styles.detailsContainer}> */}
             <View style={styles.headerContainer}>
-                <Text>{recipeTitle}</Text>
-                <Text>Serving Time: {recipeLength} minutes</Text>
+                <Text style={styles.headerText}>Serving Time: {recipeLength} minutes</Text>
                 <View style={styles.imgContainer}>
                     <Image source={{ uri: imgUrl }} style={styles.img} />
                 </View>
@@ -89,7 +92,8 @@ const SelectedRecipeModal = props => {
                     recipeSteps={recipeSteps}
                 />
             </View>
-        </View>
+            {/* </View> */}
+        </ImageBackground>
     )
 };
 
@@ -119,21 +123,35 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    detailsContainer: {
+    backgroundImg: {
         flex: 1,
+        alignItems: 'center'
+    },
+    detailsContainer: {
+        // flex: 1,
+        width: '90%',
         backgroundColor: '#F5F5DC',
-        width: '100%',
+        marginVertical: 10,
+        padding: 5,
         // justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 20,
-        paddingTop: 10,
-        paddingBottom: 20
+        borderRadius: 10
+        // paddingHorizontal: 20,
+        // paddingTop: 10,
+        // paddingBottom: 20
     },
     headerContainer: {
         // flex: 1,
-        height: '45%',
-        width: '100%',
+        height: '40%',
+        width: '90%',
+        backgroundColor: '#F5F5DC',
+        marginVertical: 10,
+        padding: 5,
+        borderRadius: 10,
         alignItems: 'center'
+    },
+    headerText: {
+        marginBottom: 5
     },
     imgContainer: {
         height: '85%',
@@ -149,25 +167,34 @@ const styles = StyleSheet.create({
     },
     ingredientsTextContainer: {
         width: '100%',
+        alignItems: 'center',
         marginBottom: 5,
         paddingLeft: 10
     },
     ingredientsContainer: {
         height: '10%',
-        width: '100%',
-        justifyContent: 'center'
+        width: '90%',
+        justifyContent: 'center',
+        backgroundColor: '#F5F5DC',
+        padding: 5,
+        borderRadius: 10,
+        marginBottom: 10
     },
     instructionsTextContainer: {
         width: '100%',
+        alignItems: 'center',
         marginBottom: 5,
         paddingLeft: 10
     },
     instructionsContainer: {
         // flex: 1,
         height: '45%',
-        width: '100%',
+        width: '90%',
         justifyContent: 'center',
-        alignItems: 'center'
+        backgroundColor: '#F5F5DC',
+        padding: 5,
+        borderRadius: 10,
+        marginBottom: 10
     }
 });
 

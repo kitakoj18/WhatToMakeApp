@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         // width: '50%'
     },
     buttonText: {
-        color: '#FFDAB9',
+        color: '#FFEBCD',
         textAlign: 'center'
     }
 })

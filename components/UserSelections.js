@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     selectionsContainer: {
         height: '35%',
         width: '100%',
-        marginVertical: 10
+        // marginBottom: 10
     },
     row: {
         flex: 1,
@@ -94,14 +94,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: 15
+        marginBottom: 15
     },
     unselectedButton: {
         flexDirection: 'row',
         justifyContent: 'center',
         width: 125,
         marginHorizontal: 20,
-        borderRadius: 0,
+        // borderRadius: 0,
         borderColor: '#800000',
         borderWidth: 1,
         backgroundColor: '#F5F5DC'
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: 125,
         marginHorizontal: 20,
-        borderRadius: 0
+        // borderRadius: 0
     }
 })
 

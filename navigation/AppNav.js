@@ -10,7 +10,7 @@ import SelectedRecipeModal from '../screens/SelectedRecipe';
 
 const defaultStackNavOptions = {
     headerTitle: 'WhatToMake?',
-    headerTintColor: '#FFDAB9',
+    headerTintColor: '#FFEBCD',
     headerStyle: {
         backgroundColor: '#800000'
     }
